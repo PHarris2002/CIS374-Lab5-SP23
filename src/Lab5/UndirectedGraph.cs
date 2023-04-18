@@ -124,10 +124,18 @@ namespace Lab5
                 int connectedComponents = 0;
 
                 // for all the nodes
-                //     if node is white
-                //        connectedComponents++
-                //        explore the neighbors
-                //        
+                foreach (var node in Nodes)
+                {
+                    // if node is white
+                    if (node.Color == Color.White)
+                    {
+                        //connectedComponents++
+                        connectedComponents++;
+                    }
+                }
+
+          
+                //neighbors        
 
                 return connectedComponents;
             }
