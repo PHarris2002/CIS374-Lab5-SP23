@@ -124,10 +124,18 @@ namespace Lab5
                 int connectedComponents = 0;
 
                 // for all the nodes
-                //     if node is white
-                //        connectedComponents++
-                //        explore the neighbors
-                //        
+                foreach (var node in Nodes)
+                {
+                    // if node is white
+                    if (node.Color == Color.White)
+                    {
+                        //connectedComponents++
+                        connectedComponents++;
+                    }
+                }
+
+          
+                //neighbors        
 
                 return connectedComponents;
             }
@@ -162,8 +170,8 @@ namespace Lab5
         {
             Dictionary<Node, Node> pred = new Dictionary<Node, Node>();
 
-            // initialize nodes and the pred dictionary
-            foreach (var node in Nodes)
+            // intialize nodes and the pred dictionary
+            foreach( var node in Nodes)
             {
                 pred[node] = null;
                 node.Color = Color.White;
@@ -176,25 +184,20 @@ namespace Lab5
 
         private void DFSVisit(Node node, Dictionary<Node,Node> pred)
         {
-            //marks as visited but neighbors aren't fully explored
             Console.WriteLine(node);
             node.Color = Color.Gray;
 
-            //sort the neighbors so that we will visit in alphabetical order
+            // sort the neighbors so that we will visit in alphabetical order
             node.Neighbors.Sort();
 
-            foreach(var neighbor in node.Neighbors)
+            foreach ( var neighbor in node.Neighbors )
             {
-                //if the neighbor is undiscovered
                 if (neighbor.Color == Color.White)
                 {
-                    //assign the node as the neighbor's predecessor
                     pred[neighbor] = node;
                     DFSVisit(neighbor, pred);
                 }
             }
-
-            //turns black once all neighbors are visited
             node.Color = Color.Black;
         }
 
@@ -212,7 +215,7 @@ namespace Lab5
         {
             var resultDictionary = new Dictionary<Node, (Node pred, int dist)>();
 
-            //initialize dictionary
+            // initialize the dictionary
             foreach(var node in Nodes)
             {
                 node.Color = Color.White;
@@ -223,23 +226,26 @@ namespace Lab5
             startingNode.Color = Color.Gray;
             resultDictionary[startingNode] = (null, 0);
 
-            //Q = empty Queue
+            // Q = empty Queue
             Queue<Node> queue = new Queue<Node>();
             queue.Enqueue(startingNode);
 
-            //iteratively traverse the graph
+            // iteratively traverse the graph
 
-            while (queue.Count > 0)
+            while( queue.Count > 0 )
             {
-                //u = head(Q)
+                // u = head(Q)
                 var node = queue.Peek();
 
-                foreach (var neighbor in node.Neighbors)
+                // We should sort Neighbors first
+                node.Neighbors.Sort();
+
+                foreach( var neighbor in node.Neighbors )
                 {
-                    if(neighbor.Color == Color.White)
+                    if( neighbor.Color == Color.White)
                     {
                         int distance = resultDictionary[node].ToTuple().Item2;
-                        resultDictionary[neighbor] = (node, distance + 1);
+                        resultDictionary[neighbor] = (node, distance+1);
                         neighbor.Color = Color.Gray;
                         queue.Enqueue(neighbor);
                     }
@@ -247,8 +253,10 @@ namespace Lab5
 
                 queue.Dequeue();
                 node.Color = Color.Black;
+               
             }
 
+            
             return resultDictionary;
         }
 
@@ -290,7 +298,7 @@ namespace Lab5
                     str += ", ";
                 }
 
-                str += ".";
+                
                 str += Environment.NewLine;
             }
             return str;
