@@ -131,12 +131,11 @@ namespace Lab5
                     {
                         //connectedComponents++
                         connectedComponents++;
+
+                        //visit all reachable
                         DFS(node);
                     }
                 }
-
-          
-                //neighbors        
 
                 return connectedComponents;
             }
@@ -153,6 +152,7 @@ namespace Lab5
         public bool IsReachable(string nodename1, string nodename2)
         {
             ResetNodeColor();
+            int nodeCounter = 0;
 
             var node1 = GetNodeByName(nodename1);
             var node2 = GetNodeByName(nodename2);
@@ -161,6 +161,7 @@ namespace Lab5
 
             foreach (var nodepair in reachableNodes)
             {
+                nodeCounter++;
                 if (nodepair.Key == node2)
                 {
                     return true;
