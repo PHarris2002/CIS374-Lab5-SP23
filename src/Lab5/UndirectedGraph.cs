@@ -131,6 +131,7 @@ namespace Lab5
                     {
                         //connectedComponents++
                         connectedComponents++;
+                        DFS(node);
                     }
                 }
 
@@ -153,10 +154,22 @@ namespace Lab5
         {
             ResetNodeColor();
 
+            var node1 = GetNodeByName(nodename1);
+            var node2 = GetNodeByName(nodename2);
+
+            var reachableNodes = DFS(node1);
+
+            foreach (var nodepair in reachableNodes)
+            {
+                if (nodepair.Key == node2)
+                {
+                    return true;
+                }
+            }
+
             return false;
         }
 
-        // TODO
         /// <summary>
         /// Searches the graph in a depth-first manner, creating a
         /// dictionary of the Node to Predessor Node links discovered by starting at the given node.
@@ -182,6 +195,7 @@ namespace Lab5
             return pred;
         }
 
+        // TODO
         private void DFSVisit(Node node, Dictionary<Node,Node> pred)
         {
             Console.WriteLine(node);
