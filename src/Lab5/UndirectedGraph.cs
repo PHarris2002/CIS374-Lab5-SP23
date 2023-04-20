@@ -183,13 +183,6 @@ namespace Lab5
         {
             Dictionary<Node, Node> pred = new Dictionary<Node, Node>();
 
-            // intialize nodes and the pred dictionary
-            foreach( var node in Nodes)
-            {
-                pred[node] = null;
-                node.Color = Color.White;
-            }
-
             DFSVisit(startingNode, pred);
 
             return pred;

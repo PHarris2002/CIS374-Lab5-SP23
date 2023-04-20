@@ -92,5 +92,29 @@ namespace UnitTests
 
             Assert.AreEqual(1, undirectedGraph.ConnectedComponents);
         }
+
+        [TestMethod]
+        public void SavannahIsReachable()
+        {
+            UndirectedGraph undirectedGraph = new UndirectedGraph("../../../graphs/Savannah.txt");
+
+            Assert.IsTrue(undirectedGraph.IsReachable("a", "c"));
+            Assert.IsTrue(undirectedGraph.IsReachable("e", "i"));
+            Assert.IsTrue(undirectedGraph.IsReachable("g", "b"));
+            Assert.IsTrue(undirectedGraph.IsReachable("c", "f"));
+            Assert.IsTrue(undirectedGraph.IsReachable("b", "i"));
+
+            Assert.IsFalse(undirectedGraph.IsReachable("a", "d"));
+            Assert.IsFalse(undirectedGraph.IsReachable("d", "j"));
+
+        }
+
+        [TestMethod]
+        public void SavannahConnectedComponents()
+        {
+            UndirectedGraph undirectedGraph = new UndirectedGraph("../../../graphs/Savannah.txt");
+
+            Assert.AreEqual(2, undirectedGraph.ConnectedComponents);
+        }
     }
 }
