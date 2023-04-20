@@ -68,7 +68,7 @@ namespace UnitTests
         {
             UndirectedGraph undirectedGraph = new UndirectedGraph("../../../graphs/graph3.txt");
 
-            Assert.AreEqual(2, undirectedGraph.ConnectedComponents);
+            Assert.AreEqual(3, undirectedGraph.ConnectedComponents);
         }
 
         [TestMethod]

@@ -112,7 +112,6 @@ namespace Lab5
             return node;
         }
 
-        // TODO
          /**
          * <summary> Returns the number of connected components in the graph .</summary>
          */
@@ -122,6 +121,7 @@ namespace Lab5
             get
             {
                 int connectedComponents = 0;
+                ResetNodeColor();
 
                 // for all the nodes
                 foreach (var node in Nodes)
@@ -129,11 +129,11 @@ namespace Lab5
                     // if node is white
                     if (node.Color == Color.White)
                     {
-                        //connectedComponents++
-                        connectedComponents++;
-
                         //visit all reachable
                         DFS(node);
+
+                        //connectedComponents++
+                        connectedComponents++;
                     }
                 }
 
@@ -141,7 +141,6 @@ namespace Lab5
             }
         }
 
-        // TODO
 
         /// <summary>
         /// 
@@ -162,7 +161,7 @@ namespace Lab5
             foreach (var nodepair in reachableNodes)
             {
                 nodeCounter++;
-                if (nodepair.Key == node2)
+                if (node2.Color == Color.Black)
                 {
                     return true;
                 }
@@ -196,7 +195,6 @@ namespace Lab5
             return pred;
         }
 
-        // TODO
         private void DFSVisit(Node node, Dictionary<Node,Node> pred)
         {
             Console.WriteLine(node);
@@ -216,7 +214,6 @@ namespace Lab5
             node.Color = Color.Black;
         }
 
-        // TODO
         /// <summary>
         /// Searches the graph in a breadth-first manner, creating a
         /// dictionary of the Node to Predecessor and Distance discovered by starting at the given node.
@@ -275,7 +272,6 @@ namespace Lab5
             return resultDictionary;
         }
 
-        // TODO
         /// <summary>
         /// 
         /// </summary>
